@@ -18,6 +18,11 @@ To setup Zen
 
 - Copy [userChrome.css](./zen/chrome/userChrome.css/) widget to `%USERPROFILE%/AppData/Roaming/zen/Profile/(releasae)/chrome` directory
 
+## Wezterm
+
+- [Wezterm](https://wezterm.org/index.html)
+- Copy [wezterm config](./wezterm/.wezterm.lua) in `%USERPROFILE%/` directory
+
 ## Powershell Aliases + Yazi
 
 - Copy [WindowsPowershell](./WindowsPowerShell//) to `Documents` directory
