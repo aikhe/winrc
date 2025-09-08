@@ -6,7 +6,7 @@
 
 - [Neovide](https://github.com/neovide/neovide)
 - [Neovide Config File](./neovide/config.toml)
-- Config directory: `%USERPROFILE%/AppData/Roaming/neovide`
+- Neovide directory: `%USERPROFILE%/AppData/Roaming/neovide`
 
 Check other neovide configs in my [nvim configuration](https://github.com/aikhe/aikhe-nvim-config)
 
@@ -18,7 +18,7 @@ To setup Zen
 
 - Copy [userChrome.css](./zen/chrome/userChrome.css/) widget to `%USERPROFILE%/AppData/Roaming/zen/Profile/(releasae)/chrome` directory
 
-## Powershell Aliases
+## Powershell Aliases + Yazi
 
 - Copy [WindowsPowershell](./WindowsPowerShell//) to `Documents` directory
 
@@ -46,3 +46,20 @@ cp ./zebar/ ~/.glzr/zebar/
 - [Powertoys Run](https://learn.microsoft.com/en-us/windows/powertoys/run)
 
 Set up `Windows + Space` key for PowerToys run
+
+## File Manager
+
+- [Yazi](https://github.com/sxyazi/yazi)
+- Yazi directory: `%USERPROFILE%/AppData/yazi`
+
+(documentation)[https://yazi-rs.github.io/]
+
+Windows Installtion
+
+- Make sure yazi is installed and has the powershell configuration
+
+```
+winget install sxyazi.yazi
+# Install the optional dependencies (recommended):
+winget install Gyan.FFmpeg 7zip.7zip jqlang.jq oschwartz10612.Poppler sharkdp.fd BurntSushi.ripgrep.MSVC junegunn.fzf ajeetdsouza.zoxide ImageMagick.ImageMagick
+```
