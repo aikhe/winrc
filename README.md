@@ -1,1 +1,1 @@
-![./asset/winrc.png]
+![winrc](./asset/winrc.png)
