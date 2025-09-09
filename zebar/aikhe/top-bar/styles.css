@@ -15,7 +15,7 @@
   --icon-color-dark: rgba(255 255 255 / 40%);
 
   --background-color-light: rgba(238 238 238 / 90%);
-  --background-color-dark: rgba(0 0 0 / 60%);
+  --background-color-dark: rgba(0 0 0 / 80%);
 }
 
 @media (prefers-color-scheme: light) {
