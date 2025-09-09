@@ -1,8 +1,8 @@
 ![winrc](./asset/demo-winrc.png)
 
-#### My Windows Config
+# My Windows Config
 
-#### Code Editor
+## Code Editor
 
 - [Neovide](https://github.com/neovide/neovide)
 - [Neovide Config File](./neovide/config.toml)
@@ -10,7 +10,7 @@
 
 Check other neovide configs in my [nvim configuration](https://github.com/aikhe/aikhe-nvim-config)
 
-#### Browser Setup
+## Browser Setup
 
 - [Zen Browser](https://zen-browser.app/)
 
@@ -18,16 +18,16 @@ To setup Zen
 
 - Copy [userChrome.css](./zen/chrome/userChrome.css/) widget to `%USERPROFILE%/AppData/Roaming/zen/Profile/(releasae)/chrome` directory
 
-#### Powershell Aliases
+## Powershell Aliases
 
 - Copy [WindowsPowershell](./WindowsPowerShell//) to `Documents` directory
 
-#### Window Manager Setup
+## Window Manager Setup
 
 - [GlazeWM](https://github.com/glzr-io/glazewm)
 - [GlazeWM Config File](./glazewm/config.yaml)
 
-#### TopBar Setup
+## TopBar Setup
 
 - [Zebar](https://github.com/glzr-io/zebar)
 
@@ -41,7 +41,7 @@ cp ./zebar/ ~/.glzr/zebar/
 
 2. Than disable other widgets in Zebar system tray.
 
-#### Searching
+## Searching
 
 - [Powertoys Run](https://learn.microsoft.com/en-us/windows/powertoys/run)
 
