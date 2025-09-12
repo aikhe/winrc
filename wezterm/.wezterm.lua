@@ -34,6 +34,7 @@ config.window_padding = {
 }
 
 config.use_fancy_tab_bar = true
+config.enable_kitty_keyboard=true
 
 -- TABS
 config.hide_tab_bar_if_only_one_tab = true
@@ -97,7 +98,7 @@ config.keys = {
 		action = act.AdjustPaneSize({ "Down", 5 }),
 	},
 	{
-		key = "k",
+		key = "i",
 		mods = "CTRL|SHIFT",
 		action = act.AdjustPaneSize({ "Up", 5 }),
 	},
@@ -105,6 +106,11 @@ config.keys = {
 		key = "l",
 		mods = "CTRL|SHIFT",
 		action = act.AdjustPaneSize({ "Right", 5 }),
+	},
+	{
+		key = 'q',
+		mods = 'CTRL|SHIFT',
+		action = wezterm.action.CloseCurrentPane { confirm = true },
 	},
 	{ key = "9", mods = "CTRL", action = act.PaneSelect },
 	{ key = "q", mods = "CTRL", action = act.ShowDebugOverlay },
