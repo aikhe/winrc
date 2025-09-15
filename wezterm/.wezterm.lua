@@ -142,6 +142,16 @@ table.insert(config.keys, { key = "j", mods = "CTRL|ALT", action = act.ActivateP
 table.insert(config.keys, { key = "k", mods = "CTRL|ALT", action = act.ActivatePaneDirection("Up") })
 table.insert(config.keys, { key = "l", mods = "CTRL|ALT", action = act.ActivatePaneDirection("Right") })
 
+-- Pane resizing
+table.insert(config.keys, { key = "h", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Left", 5 }) })
+table.insert(config.keys, { key = "j", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Down", 5 }) })
+table.insert(config.keys, { key = "i", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Up", 5 }) })
+table.insert(config.keys, { key = "l", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Right", 5 }) })
+
+-- Other binds
+table.insert(config.keys, { key = "o", mods = "CTRL", action = act.PaneSelect })
+table.insert(config.keys, { key = "q", mods = "CTRL", action = act.ShowDebugOverlay })
+
 -- For example, changing the color scheme:
 -- config.color_scheme = "Cloud (terminal.sexy)"
 config.colors = {
