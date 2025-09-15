@@ -152,6 +152,21 @@ table.insert(config.keys, { key = "l", mods = "CTRL|SHIFT", action = act.AdjustP
 table.insert(config.keys, { key = "o", mods = "CTRL", action = act.PaneSelect })
 table.insert(config.keys, { key = "q", mods = "CTRL", action = act.ShowDebugOverlay })
 
+-- Toggle opacity with CTRL+ALT+O
+table.insert(config.keys, {
+	key = "O",
+	mods = "CTRL|ALT",
+	action = wezterm.action_callback(function(window, _)
+		local overrides = window:get_config_overrides() or {}
+		if overrides.window_background_opacity == 1.0 then
+			overrides.window_background_opacity = 0.8
+		else
+			overrides.window_background_opacity = 1.0
+		end
+		window:set_config_overrides(overrides)
+	end),
+})
+
 -- For example, changing the color scheme:
 -- config.color_scheme = "Cloud (terminal.sexy)"
 config.colors = {
