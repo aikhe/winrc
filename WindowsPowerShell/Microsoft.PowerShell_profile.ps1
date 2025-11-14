@@ -7,6 +7,8 @@ function Open-Neovide {
     neovide --frame none $path
 }
 
+function Cd-Local { Set-Location C:\Users\aikhe\Desktop\ike\local }
+
 function Cd-Neovim { Set-Location C:\Users\aikhe\AppData\Local\nvim }
 
 function Cd-Winrc { Set-Location C:\Users\aikhe\Desktop\ike\local\winrc }
@@ -21,7 +23,7 @@ function y {
     Remove-Item -Path $tmp
 }
 
-
+Set-Alias -Name local -Value Cd-Local
 Set-Alias -Name vim -Value Open-Neovide 
-Set-Alias -Name nvimconf -Value Cd-Neovim
 Set-Alias -Name winrc -Value Cd-Winrc
+Set-Alias -Name nvimconf -Value Cd-Neovim
