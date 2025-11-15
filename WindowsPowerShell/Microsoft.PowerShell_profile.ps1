@@ -9,6 +9,8 @@ function Open-Neovide {
 
 function Cd-Neovim { Set-Location C:\Users\aikhe\AppData\Local\nvim }
 
+function Cd-Winrc { Set-Location C:\Users\aikhe\Desktop\ike\local\winrc }
+
 function y {
     $tmp = (New-TemporaryFile).FullName
     yazi $args --cwd-file="$tmp"
@@ -22,3 +24,4 @@ function y {
 
 Set-Alias -Name vim -Value Open-Neovide 
 Set-Alias -Name nvimconf -Value Cd-Neovim
+Set-Alias -Name winrc -Value Cd-Winrc
