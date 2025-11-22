@@ -113,7 +113,7 @@ config.keys = {
 		action = wezterm.action.CloseCurrentPane({ confirm = true }),
 	},
 	{ key = "9", mods = "CTRL", action = act.PaneSelect },
-	{ key = "q", mods = "CTRL", action = act.ShowDebugOverlay },
+	{ key = "0", mods = "CTRL", action = act.ShowDebugOverlay },
 	{
 		key = "O",
 		mods = "CTRL|ALT",
@@ -156,7 +156,6 @@ table.insert(config.keys, { key = "l", mods = "CTRL|SHIFT", action = act.AdjustP
 
 -- Other binds
 table.insert(config.keys, { key = "o", mods = "CTRL", action = act.PaneSelect })
-table.insert(config.keys, { key = "q", mods = "CTRL", action = act.ShowDebugOverlay })
 
 -- Toggle opacity with CTRL+ALT+O
 table.insert(config.keys, {
