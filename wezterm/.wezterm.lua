@@ -128,7 +128,13 @@ config.keys = {
 			window:set_config_overrides(overrides)
 		end),
 	},
+	{
+		key = "w",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.CloseCurrentPane({ confirm = false }),
+	},
 }
+
 for i = 1, 9 do
 	table.insert(config.keys, {
 		key = tostring(i),
