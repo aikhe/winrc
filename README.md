@@ -60,7 +60,12 @@ Set up `Windows + Space` key for PowerToys run
 ## File Manager
 
 - [Yazi](https://github.com/sxyazi/yazi)
-- Yazi directory: `%USERPROFILE%/AppData/yazi`
+- Yazi directory: `%USERPROFILE%/AppData/Roaming/yazi`
+
+To configure Yazi:
+
+- For options copy [yazi.toml](./yazi/yazi.toml/) in `%USERPROFILE%/AppData/Roaming/yazi/config` directory
+- And for colorscheme copy [theme.toml](./yazi/theme.toml/) in `%USERPROFILE%/AppData/Roaming/yazi/config` directory
 
 [documentation](https://yazi-rs.github.io/)
 
