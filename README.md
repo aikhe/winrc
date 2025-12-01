@@ -62,7 +62,7 @@ Set up `Windows + Space` key for PowerToys run
 - [Yazi](https://github.com/sxyazi/yazi)
 - Yazi directory: `%USERPROFILE%/AppData/yazi`
 
-(documentation)[https://yazi-rs.github.io/]
+[documentation](https://yazi-rs.github.io/)
 
 Windows Installtion
 
