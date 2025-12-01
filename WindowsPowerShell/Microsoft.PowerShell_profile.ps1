@@ -6,7 +6,8 @@ function Open-Neovide {
     )
     neovide --frame none $path
 }
-Set-Alias -Name vim -Value Open-Neovide 
+
+function Cd-Neovim { Set-Location C:\Users\aikhe\AppData\Local\nvim }
 
 function y {
     $tmp = (New-TemporaryFile).FullName
@@ -17,3 +18,7 @@ function y {
     }
     Remove-Item -Path $tmp
 }
+
+
+Set-Alias -Name vim -Value Open-Neovide 
+Set-Alias -Name nvimconf -Value Cd-Neovim
