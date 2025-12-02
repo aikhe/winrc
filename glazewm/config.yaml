@@ -98,7 +98,7 @@ window_effects:
 window_behavior:
   # New windows are created in this state whenever possible.
   # Allowed values: 'tiling', 'floating'.
-  initial_state: 'tiling'
+  initial_state: 'floating'
 
   # Sets the default options for when a new window is created. This also
   # changes the defaults for when the state change commands, like
@@ -235,7 +235,7 @@ keybindings:
 
   # Minimize focused window.
   - commands: ['toggle-minimized']
-    bindings: ['alt+m']
+    bindings: ['alt+d']
 
   # Close focused window.
   - commands: ['close']
@@ -243,7 +243,7 @@ keybindings:
 
   # Kill GlazeWM process safely.
   - commands: ['wm-exit']
-    bindings: ['alt+shift+k']
+    bindings: ['space+shift+k']
 
   # Re-evaluate configuration file.
   - commands: ['wm-reload-config']
@@ -267,7 +267,7 @@ keybindings:
 
   # Focus the workspace that last had focus.
   - commands: ['focus --recent-workspace']
-    bindings: ['alt+d']
+    bindings: ['alt+m']
 
   # Change focus to a workspace defined in `workspaces` config.
   - commands: ['focus --workspace aikhe']
@@ -319,3 +319,9 @@ keybindings:
     bindings: ['alt+shift+8']
   - commands: ['move --workspace 9', 'focus --workspace 9']
     bindings: ['alt+shift+9']
+
+  # Set window states when new window is open
+  # - commands: ['set-floating']
+  #   bindings: ['alt+shift+f']
+  # - commands: ['set-tiling']
+  #   bindings: ['alt+shift+t']

@@ -1,0 +1,62 @@
+{
+  "c6813222-6571-4ba6-8faf-58f3343324f6": {
+    "id": "c6813222-6571-4ba6-8faf-58f3343324f6",
+    "name": "Disable Rounded Corners",
+    "description": "Disable Rounded Corners from Web View.",
+    "homepage": "https://github.com/gunir/desktop/tree/themes/themes",
+    "style": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/c6813222-6571-4ba6-8faf-58f3343324f6/chrome.css",
+    "readme": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/c6813222-6571-4ba6-8faf-58f3343324f6/readme.md",
+    "image": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/c6813222-6571-4ba6-8faf-58f3343324f6/image.png",
+    "author": "gunir",
+    "version": "3.0.0",
+    "tags": [],
+    "createdAt": "2024-08-19",
+    "updatedAt": "2025-01-26",
+    "enabled": true
+  },
+  "f7c71d9a-bce2-420f-ae44-a64bd92975ab": {
+    "id": "f7c71d9a-bce2-420f-ae44-a64bd92975ab",
+    "name": "Better Unloaded Tabs",
+    "description": "Makes unloaded tabs easier to notice by making them greyscale and transparent.",
+    "homepage": "https://github.com/Felkazz/zen-browser-better-unloaded-tabs",
+    "style": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/f7c71d9a-bce2-420f-ae44-a64bd92975ab/chrome.css",
+    "readme": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/f7c71d9a-bce2-420f-ae44-a64bd92975ab/readme.md",
+    "image": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/f7c71d9a-bce2-420f-ae44-a64bd92975ab/image.png",
+    "author": "Felkazz",
+    "version": "1.0.1",
+    "tags": [],
+    "createdAt": "2024-10-12",
+    "updatedAt": "2025-01-26",
+    "enabled": true
+  },
+  "5c4d7772-d963-4672-ab03-e9d541438881": {
+    "id": "5c4d7772-d963-4672-ab03-e9d541438881",
+    "name": "Bigger Mute Button",
+    "description": "Enlarges mute button, hides sound labels, and replaces tab icon with mute button when not expanded.",
+    "homepage": "https://github.com/jvabn/zenbrowser-themes",
+    "style": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/5c4d7772-d963-4672-ab03-e9d541438881/chrome.css",
+    "readme": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/5c4d7772-d963-4672-ab03-e9d541438881/readme.md",
+    "image": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/5c4d7772-d963-4672-ab03-e9d541438881/image.png",
+    "author": "jvabn",
+    "version": "1.0.3",
+    "tags": [],
+    "createdAt": "2024-10-12",
+    "updatedAt": "2025-05-10",
+    "enabled": true
+  },
+  "906c6915-5677-48ff-9bfc-096a02a72379": {
+    "id": "906c6915-5677-48ff-9bfc-096a02a72379",
+    "name": "Floating Status Bar",
+    "description": "Mod for Zen Browser that detaches the status bar from the bottom left corner of the browser window.",
+    "homepage": "https://github.com/AmirhBeigi/zen-floating-statusbar/",
+    "style": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/906c6915-5677-48ff-9bfc-096a02a72379/chrome.css",
+    "readme": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/906c6915-5677-48ff-9bfc-096a02a72379/readme.md",
+    "image": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/906c6915-5677-48ff-9bfc-096a02a72379/image.png",
+    "author": "AmirhBeigi",
+    "version": "1.0.0",
+    "tags": [],
+    "createdAt": "2024-10-06",
+    "updatedAt": "2025-01-26",
+    "enabled": true
+  }
+}

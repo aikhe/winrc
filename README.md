@@ -17,6 +17,8 @@ Check other neovide configs in my [nvim configuration](https://github.com/aikhe/
 To setup Zen
 
 - Copy [userChrome.css](./zen/chrome/userChrome.css/) widget to `%USERPROFILE%/AppData/Roaming/zen/Profile/(releasae)/chrome` directory
+- For exporting zen mods [Zen mods config](./zen/zen-mods-export.json)
+- To turn on compact mode, enable the `browser.compactmode.show` preference to true in `about:config` and then select "Compact (not supported)" from the "Density" menu in the "Customize Toolbar" panel.
 
 ## Wezterm
 
@@ -30,7 +32,10 @@ To setup Zen
 ## Window Manager Setup
 
 - [GlazeWM](https://github.com/glzr-io/glazewm)
-- [GlazeWM Config File](./glazewm/config.yaml)
+
+To configure GlazeWM:
+
+- Copy [GlazeWM config](./glazewm/) in `%USERPROFILE%/.glzr` directory
 
 ## TopBar Setup
 
