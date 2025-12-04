@@ -78,3 +78,21 @@ winget install sxyazi.yazi
 # Install the optional dependencies (recommended):
 winget install Gyan.FFmpeg 7zip.7zip jqlang.jq oschwartz10612.Poppler sharkdp.fd BurntSushi.ripgrep.MSVC junegunn.fzf ajeetdsouza.zoxide ImageMagick.ImageMagick
 ```
+
+#### My clean windows build process
+
+- Debloat using [Talon](https://ravendevteam.org/software/talon/) (Talonlite for win10)
+- Brave as main browser (might go back to Zen since I need the keybinds and vertical tabs)
+- Discord just because
+- Chocolatey for package manager
+- Git of course
+- Installed all versions of `VCredist` so nothing can break. [All in one package](https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/)
+- GlazeWM for `tiling window manager` (efficient window handling)
+- Also Zebar to support with GlazeWM (topbar)
+- Import my config for both GlazeWM and Zebar
+- Wezterm as default terminal (it's clean I like it)
+- **Neovim my beloved**
+  - [My nvim configuration](https://github.com/aikhe/nvim-config)
+- Yazi for file manager inside the term
+- Notion for everything
+- Figma + Affinity
