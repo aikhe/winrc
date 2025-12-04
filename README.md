@@ -85,7 +85,7 @@ winget install Gyan.FFmpeg 7zip.7zip jqlang.jq oschwartz10612.Poppler sharkdp.fd
 - Brave as main browser (might go back to Zen since I need the keybinds and vertical tabs)
 - Discord just because
 - Chocolatey for package manager
-- Git of course
+- Git of course + gh via `choco install gh`
 - Installed all versions of `VCredist` so nothing can break. [All in one package](https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/)
 - GlazeWM for `tiling window manager` (efficient window handling)
 - Also Zebar to support with GlazeWM (topbar)
