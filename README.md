@@ -96,3 +96,4 @@ winget install Gyan.FFmpeg 7zip.7zip jqlang.jq oschwartz10612.Poppler sharkdp.fd
 - Yazi for file manager inside the term
 - Notion for everything
 - Figma + Affinity
+- Update powershell aliases & scripts/snippets via `nvim $PROFILE`
