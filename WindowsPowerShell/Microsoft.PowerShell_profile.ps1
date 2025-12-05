@@ -1,17 +1,17 @@
 $Env:YAZI_FILE_ONE = 'C:\Program Files\Git\usr\bin\file.exe'
 
-function Open-Neovide {
-    param(
-        [string]$path = "."
-    )
-    neovide --frame none $path
-}
+# function Open-Neovide {
+#     param(
+#         [string]$path = "."
+#     )
+#     neovide --frame none $path
+# }
 
-function Cd-Local { Set-Location C:\Users\aikhe\Desktop\ike\local }
+function Cd-Local { Set-Location C:\Users\Paolo\OneDrive\Desktop\ike\local }
 
-function Cd-Neovim { Set-Location C:\Users\aikhe\AppData\Local\nvim }
+function Cd-Neovim { Set-Location C:\Users\Paolo\AppData\Local\nvim }
 
-function Cd-Winrc { Set-Location C:\Users\aikhe\Desktop\ike\local\winrc }
+function Cd-Winrc { Set-Location C:\Users\Paolo\OneDrive\Desktop\ike\local\winrc }
 
 function y {
     $tmp = (New-TemporaryFile).FullName
@@ -24,6 +24,8 @@ function y {
 }
 
 Set-Alias -Name local -Value Cd-Local
-Set-Alias -Name vim -Value Open-Neovide 
+# Set-Alias -Name vim -Value Open-Neovide 
 Set-Alias -Name winrc -Value Cd-Winrc
 Set-Alias -Name nvimconf -Value Cd-Neovim
+
+Set-Location "C:\Users\Paolo\OneDrive\Desktop\ike\local"
