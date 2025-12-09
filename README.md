@@ -17,6 +17,7 @@ Check other neovide configs in my [nvim configuration](https://github.com/aikhe/
 To setup Zen
 
 - Copy [userChrome.css](./zen/chrome/userChrome.css/) widget to `%USERPROFILE%/AppData/Roaming/zen/Profile/(releasae)/chrome` directory
+- For `userChrome.css` to work, follow this zen [docs](https://docs.zen-browser.app/guides/live-editing#step-4-edit-the-userchromecss-file)
 - For exporting zen mods [Zen mods config](./zen/zen-mods-export.json)
 - To turn on compact mode, enable the `browser.compactmode.show` preference to true in `about:config` and then select "Compact (not supported)" from the "Density" menu in the "Customize Toolbar" panel.
 - And to actually save your sanity and ignore opening links on new window turn off `prefer_windows_on_current_virtual_desktop` in `about:config` (zen issue)
