@@ -26,6 +26,7 @@ To setup Zen
 
 - [Wezterm](https://wezterm.org/index.html)
 - Copy [wezterm config](./wezterm/.wezterm.lua) in `%USERPROFILE%/` directory
+- Note: Download & install Jet Brains Mono Nerd Font since i've added that as the default font for the wezterm config.
 
 ## Powershell Aliases + Yazi
 
