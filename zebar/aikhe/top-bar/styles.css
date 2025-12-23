@@ -6,16 +6,16 @@
 
 :root {
   --text-size: 12px;
-  --icon-size: 12px;
+  --icon-size: 14px;
 
-  --text-color-light: rgba(0 0 0 / 95%);
+  --text-color-light: rgba(0 0 0 / 80%);
   --text-color-dark: rgba(255 255 255 / 80%);
 
   --icon-color-light: white;
   --icon-color-dark: rgba(255 255 255 / 40%);
 
-  --background-color-light: rgba(238 238 238 / 90%);
-  --background-color-dark: rgba(0 0 0 / 80%);
+  --background-color-light: rgba(238 238 238 / 100%);
+  --background-color-dark: rgba(0 0 0 / 100%);
 }
 
 @media (prefers-color-scheme: light) {
@@ -79,7 +79,7 @@ body,
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   height: 100%;
-  padding: 2px 0.4vw 2px 0.8vw;
+  padding: 1px 0.2vw 1px 0.2vw;
 }
 
 .left,
@@ -108,7 +108,7 @@ body,
 .memory,
 .cpu,
 .battery {
-  margin-right: 20px;
+  margin-right: 6px;
 }
 
 .workspaces {
@@ -118,11 +118,11 @@ body,
 
 .workspace {
   background: rgb(255 255 255 / 4%);
-  margin-right: 4px;
-  padding: 2.5px 6px;
+  margin-right: 2px;
+  padding: 4px 8px;
   color: rgb(255 255 255 / 90%);
   border: none;
-  border-radius: 2px;
+  /* border-radius: 2px; */
   cursor: pointer;
 
   &.displayed {
@@ -138,17 +138,17 @@ body,
 .binding-mode,
 .tiling-direction,
 .paused-button {
-  background: rgb(255 255 255 / 15%);
-  color: rgb(255 255 255 / 90%);
-  border-radius: 2px;
+  background: rgb(255 255 255 / 0%);
+  color: rgb(255 255 255 / 80%);
   line-height: 1;
   padding: 4px 8px;
   border: 0;
   cursor: pointer;
+  margin-right: 2.8px;
 }
 
 .binding-mode {
-  margin-right: 4px;
+  margin-right: 0px;
 }
 
 .cpu .high-usage {
@@ -181,6 +181,6 @@ body,
   all: unset;
 }
 
-.weather {
-  margin: 0 15px 0px 0px;
+.cpu {
+  margin: 0 8px 0px 0px;
 }
