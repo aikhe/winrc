@@ -315,7 +315,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	return {
 		{ Text = "" }, -- left padding
 		{ Text = title },
-		{ Text = " " }, -- right padding
+		{ Text = "  " }, -- right padding
 	}
 end)
 
@@ -348,8 +348,8 @@ tabline.setup({
 	},
 	sections = {
 		tabline_a = { " " },
-		tabline_b = { "" },
-		tabline_c = { "workspace" },
+		tabline_b = { "workspace" },
+		tabline_c = { " " },
 		tab_active = {
 			"index",
 			{ "parent", padding = { left = 1, right = 1 } },
