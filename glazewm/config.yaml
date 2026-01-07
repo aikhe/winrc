@@ -120,10 +120,10 @@ window_behavior:
       shown_on_top: false
 
 workspaces:
-  - name: 'aikhe'
-  - name: 'acedia'
-  - name: 'elapse'
-  - name: 'miscs'
+  - name: '1'
+  - name: '2'
+  - name: '3'
+  - name: '4'
   - name: '5'
   - name: '6'
   - name: '7'
@@ -270,13 +270,13 @@ keybindings:
     bindings: ['alt+m']
 
   # Change focus to a workspace defined in `workspaces` config.
-  - commands: ['focus --workspace aikhe']
+  - commands: ['focus --workspace 1']
     bindings: ['alt+1']
-  - commands: ['focus --workspace acedia']
+  - commands: ['focus --workspace 2']
     bindings: ['alt+2']
-  - commands: ['focus --workspace elapse']
+  - commands: ['focus --workspace 3']
     bindings: ['alt+3']
-  - commands: ['focus --workspace miscs']
+  - commands: ['focus --workspace 4']
     bindings: ['alt+4']
   - commands: ['focus --workspace 5']
     bindings: ['alt+5']
@@ -301,13 +301,13 @@ keybindings:
     bindings: ['alt+shift+s']
 
   # Move focused window to a workspace defined in `workspaces` config.
-  - commands: ['move --workspace aikhe', 'focus --workspace aikhe']
+  - commands: ['move --workspace 1', 'focus --workspace 1']
     bindings: ['alt+shift+1']
-  - commands: ['move --workspace acedia', 'focus --workspace acedia']
+  - commands: ['move --workspace 2', 'focus --workspace 2']
     bindings: ['alt+shift+2']
-  - commands: ['move --workspace elapse', 'focus --workspace elapse']
+  - commands: ['move --workspace 3', 'focus --workspace 3']
     bindings: ['alt+shift+3']
-  - commands: ['move --workspace miscs', 'focus --workspace miscs']
+  - commands: ['move --workspace 4', 'focus --workspace 4']
     bindings: ['alt+shift+4']
   - commands: ['move --workspace 5', 'focus --workspace 5']
     bindings: ['alt+shift+5']
