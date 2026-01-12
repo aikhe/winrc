@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+
 local act = wezterm.action
 local mux = wezterm.mux
 -- This will hold the configuration.
@@ -9,7 +10,7 @@ local config = wezterm.config_builder()
 -- config.front_end = "WebGpu"
 -- config.prefer_egl = false
 
-config.front_end = "OpenGL"
+-- config.front_end = "OpenGL"
 -- config.max_fps = 144
 config.default_cursor_style = "BlinkingBlock"
 -- config.animation_fps = 1
@@ -18,8 +19,8 @@ config.term = "xterm-256color"
 
 -- config.cell_width = 1
 config.line_height = 0.8
+-- config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font = wezterm.font("JetBrainsMono Nerd Font")
--- config.font = wezterm.font("MesloLGLDZ Nerd Font Mono")
 -- config.font = wezterm.font("Inconsolata Nerd Font Mono")
 
 config.prefer_egl = true
@@ -33,15 +34,14 @@ config.window_padding = {
 	bottom = 8,
 }
 
-config.use_fancy_tab_bar = true
+config.use_fancy_tab_bar = false
 config.enable_kitty_keyboard = true
 
--- TABS
+-- Tabs
 config.hide_tab_bar_if_only_one_tab = true
--- config.use_fancy_tab_bar = false
--- config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = true
 
--- PANES
+-- Panes
 -- config.inactive_pane_hsb = {
 -- 	saturation = 0.0,
 -- 	brightness = 1.0,
@@ -49,7 +49,7 @@ config.hide_tab_bar_if_only_one_tab = true
 
 -- This is where you actually apply your config choices
 -- color scheme toggling
-wezterm.on("toggle-colorscheme", function(window, pane)
+wezterm.on("toggle-colorscheme", function(window)
 	local overrides = window:get_config_overrides() or {}
 	if overrides.color_scheme == "Zenburn" then
 		overrides.color_scheme = "Cloud (terminal.sexy)"
@@ -143,6 +143,7 @@ for i = 1, 9 do
 	})
 end
 
+-- Pane Navigation
 table.insert(config.keys, { key = "h", mods = "CTRL|ALT", action = act.ActivatePaneDirection("Left") })
 table.insert(config.keys, { key = "j", mods = "CTRL|ALT", action = act.ActivatePaneDirection("Down") })
 table.insert(config.keys, { key = "k", mods = "CTRL|ALT", action = act.ActivatePaneDirection("Up") })
@@ -156,21 +157,6 @@ table.insert(config.keys, { key = "l", mods = "CTRL|SHIFT", action = act.AdjustP
 
 -- Other binds
 table.insert(config.keys, { key = "o", mods = "CTRL", action = act.PaneSelect })
-
--- Toggle opacity with CTRL+ALT+O
-table.insert(config.keys, {
-	key = "O",
-	mods = "CTRL|ALT",
-	action = wezterm.action_callback(function(window, _)
-		local overrides = window:get_config_overrides() or {}
-		if overrides.window_background_opacity == 1.0 then
-			overrides.window_background_opacity = 0.8
-		else
-			overrides.window_background_opacity = 1.0
-		end
-		window:set_config_overrides(overrides)
-	end),
-})
 
 -- For example, changing the color scheme:
 -- config.color_scheme = "Cloud (terminal.sexy)"
@@ -278,32 +264,18 @@ config.colors = {
 }
 
 config.window_frame = {
-	-- The font used in the tab bar.
-	-- Roboto Bold is the default; this font is bundled
-	-- with wezterm.
-	-- Whatever font is selected here, it will have the
-	-- main font setting appended to it to pick up any
-	-- fallback fonts you may have used there.
 	font = wezterm.font({ family = "JetBrainsMono Nerd Font", weight = "Bold" }),
-
-	-- The size of the font in the tab bar.
-	-- Default to 10.0 on Windows but 12.0 on other systems
 	font_size = 9.0,
-
-	-- The overall background color of the tab bar when
-	-- the window is focused
 	active_titlebar_bg = "rgba(0, 0, 0,80%)",
-
-	-- The overall background color of the tab bar when
-	-- the window is not focused
 	inactive_titlebar_bg = "rgba(0, 0, 0, 80%)",
 }
 
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 config.window_decorations = "NONE"
-config.window_background_opacity = 0.8
+config.window_background_opacity = 1.0
 config.default_prog = { "powershell.exe", "-NoLogo" }
--- config.initial_cols = 80
+
+-- Background Image
 -- config.window_background_image = "C:/dev/misc/berk.png"
 -- config.window_background_image_hsb = {
 -- 	brightness = 0.1,
@@ -311,30 +283,55 @@ config.default_prog = { "powershell.exe", "-NoLogo" }
 
 config.default_cwd = "C:/Users/aikhe/Desktop/ike/local"
 
-wezterm.on("gui-startup", function(cmd)
-	local args = {}
-	if cmd then
-		args = cmd.args
-	end
-
-	local tab, pane, window = mux.spawn_window({
-		width = 140,
-		height = 45,
+wezterm.on("gui-startup", function()
+	mux.spawn_window({
+		width = 134,
+		height = 43,
 		position = {
 			x = -10,
 			y = -2,
-			-- Optional origin to use for x and y.
-			-- Possible values:
-			-- * "ScreenCoordinateSystem" (this is the default)
-			-- * "MainScreen" (the primary or main screen)
-			-- * "ActiveScreen" (whichever screen hosts the active/focused window)
-			-- * {Named="HDMI-1"} - uses a screen by name. See wezterm.gui.screens()
-			-- origin = "ScreenCoordinateSystem"
 		},
 	})
-	-- window:gui_window():maximize()
-	-- window:gui_window():set_position(0, 0)
 end)
 
--- and finally, return the configuration to wezterm
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+
+tabline.setup({
+	options = {
+		icons_enabled = true,
+		theme = "Catppuccin Mocha",
+		tabs_enabled = true,
+		theme_overrides = {},
+		section_separators = {
+			left = wezterm.nerdfonts.pl_left_hard_divider,
+			right = wezterm.nerdfonts.pl_right_hard_divider,
+		},
+		component_separators = {
+			left = wezterm.nerdfonts.pl_left_soft_divider,
+			right = wezterm.nerdfonts.pl_right_soft_divider,
+		},
+		tab_separators = {
+			left = wezterm.nerdfonts.pl_left_hard_divider,
+			right = wezterm.nerdfonts.pl_right_hard_divider,
+		},
+	},
+	sections = {
+		tabline_a = { "mode" },
+		tabline_b = { "workspace" },
+		tabline_c = { " " },
+		tab_active = {
+			"index",
+			{ "parent", padding = 0 },
+			"/",
+			{ "cwd", padding = { left = 0, right = 1 } },
+			{ "zoomed", padding = 0 },
+		},
+		tab_inactive = { "index", { "process", padding = { left = 0, right = 1 } } },
+		tabline_x = { "ram", "cpu" },
+		tabline_y = { "datetime", "battery" },
+		tabline_z = { "domain" },
+	},
+	extensions = {},
+})
+
 return config
