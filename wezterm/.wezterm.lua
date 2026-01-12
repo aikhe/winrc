@@ -41,10 +41,19 @@ config.default_prog = { "powershell.exe", "-NoLogo" }
 config.default_cwd = "C:/Users/aikhe/Desktop/ike/local"
 
 config.window_frame = {
-	font = wezterm.font({ family = "JetBrainsMono Nerd Font", weight = "Bold" }),
+	font = wezterm.font({ family = "JetBrainsMono Nerd Font", weight = "Regular" }),
 	font_size = 9.0,
 	active_titlebar_bg = "rgba(0, 0, 0, 80%)",
 	inactive_titlebar_bg = "rgba(0, 0, 0, 80%)",
+
+	border_left_width = "0.6cell",
+	border_right_width = "0.42cell",
+	border_bottom_height = "1cell",
+	border_top_height = "0.4cell",
+	border_left_color = "black",
+	border_right_color = "black",
+	border_bottom_color = "black",
+	border_top_color = "black",
 }
 
 -- ============================================================================
@@ -53,6 +62,8 @@ config.window_frame = {
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
+config.show_new_tab_button_in_tab_bar = false
+config.show_close_tab_button_in_tabs = false
 
 -- ============================================================================
 -- KEYBOARD
@@ -159,17 +170,17 @@ config.keys = {
 	},
 
 	-- Tab navigation
-	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
+	{ key = "Tab", mods = "CTRL|ALT", action = act.ActivateTabRelative(1) },
 
 	-- Pane splitting
 	{
 		key = "h",
-		mods = "CTRL|SHIFT|ALT",
+		mods = "CTRL|ALT|SHIFT",
 		action = act.SplitPane({ direction = "Right", size = { Percent = 50 } }),
 	},
 	{
 		key = "v",
-		mods = "CTRL|SHIFT|ALT",
+		mods = "CTRL|ALT|SHIFT",
 		action = act.SplitPane({ direction = "Down", size = { Percent = 50 } }),
 	},
 
@@ -217,6 +228,18 @@ config.keys = {
 	},
 	{
 		key = "r",
+		mods = "CTRL|ALT|SHIFT",
+		action = act.PromptInputLine({
+			description = "Enter new tab title:",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
+	{
+		key = "r",
 		mods = "CTRL|ALT",
 		action = act.PromptInputLine({
 			description = "Enter new workspace name:",
@@ -238,7 +261,7 @@ for i = 1, 9 do
 	})
 end
 
--- Workspace activation keybindings (Ctrl+Shift+Alt+1-9)
+-- Workspace activation keybindings (Ctrl+1-9)
 for i = 1, 9 do
 	table.insert(config.keys, {
 		key = tostring(i),
@@ -282,6 +305,20 @@ wezterm.on("gui-startup", function()
 	})
 end)
 
+-- Format tab title to show custom titles
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local title = tab.tab_title
+	if not title or #title == 0 then
+		title = tab.active_pane.title
+	end
+
+	return {
+		{ Text = "" }, -- left padding
+		{ Text = title },
+		{ Text = " " }, -- right padding
+	}
+end)
+
 -- ============================================================================
 -- PLUGINS
 -- ============================================================================
@@ -292,35 +329,41 @@ tabline.setup({
 		icons_enabled = true,
 		theme = "Catppuccin Mocha",
 		tabs_enabled = true,
-		theme_overrides = {},
-		section_separators = {
-			left = wezterm.nerdfonts.pl_left_hard_divider,
-			right = wezterm.nerdfonts.pl_right_hard_divider,
+		theme_overrides = {
+			normal_mode = {
+				-- To remove the background color, set the 'bg' to your terminal's background color
+				a = { bg = "#000000", fg = "#ffffff" },
+				b = { bg = "#000000", fg = "#ffffff" },
+				c = { bg = "#000000", fg = "#ffffff" },
+				-- You can do the same for other modes/sections as needed
+				-- inactive_mode = { ... }
+			},
 		},
-		component_separators = {
-			left = wezterm.nerdfonts.pl_left_soft_divider,
-			right = wezterm.nerdfonts.pl_right_soft_divider,
-		},
+		component_separators = "",
 		tab_separators = {
-			left = wezterm.nerdfonts.pl_left_hard_divider,
-			right = wezterm.nerdfonts.pl_right_hard_divider,
+			left = "",
+			right = "",
 		},
+		section_separators = "",
 	},
 	sections = {
-		tabline_a = { "mode" },
-		tabline_b = { "workspace" },
-		tabline_c = { " " },
+		tabline_a = { " " },
+		tabline_b = { "" },
+		tabline_c = { "workspace" },
 		tab_active = {
 			"index",
-			{ "parent", padding = 0 },
+			{ "parent", padding = { left = 1, right = 1 } },
 			"/",
-			{ "cwd", padding = { left = 0, right = 1 } },
-			{ "zoomed", padding = 0 },
+			{ "cwd", padding = { left = 2, right = 2 } },
+			{ "zoomed", padding = { left = 1, right = 1 } },
 		},
-		tab_inactive = { "index", { "process", padding = { left = 0, right = 1 } } },
-		tabline_x = { "ram", "cpu" },
-		tabline_y = { "datetime", "battery" },
-		tabline_z = { "domain" },
+		tab_inactive = {
+			"index",
+			{ "process", padding = { left = 1, right = 2 } },
+		},
+		tabline_x = { "" },
+		tabline_y = { "domain" },
+		tabline_z = { " " },
 	},
 	extensions = {},
 })
