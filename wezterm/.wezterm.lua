@@ -193,6 +193,40 @@ config.keys = {
 
 	-- Debug
 	{ key = "0", mods = "CTRL", action = act.ShowDebugOverlay },
+
+	-- Workspace management
+	{ key = "n", mods = "CTRL|ALT", action = act.SwitchWorkspaceRelative(1) },
+	{ key = "p", mods = "CTRL|ALT", action = act.SwitchWorkspaceRelative(-1) },
+	{
+		key = "s",
+		mods = "CTRL|ALT",
+		action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
+	},
+	{
+		key = "c",
+		mods = "CTRL|ALT",
+		action = wezterm.action_callback(function(window, pane)
+			local workspace_name = "workspace_" .. os.time()
+			window:perform_action(
+				act.SwitchToWorkspace({
+					name = workspace_name,
+				}),
+				pane
+			)
+		end),
+	},
+	{
+		key = "r",
+		mods = "CTRL|ALT",
+		action = act.PromptInputLine({
+			description = "Enter new workspace name:",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
+				end
+			end),
+		}),
+	},
 }
 
 -- Tab activation keybindings (Ctrl+Alt+1-9)
@@ -201,6 +235,26 @@ for i = 1, 9 do
 		key = tostring(i),
 		mods = "CTRL|ALT",
 		action = act.ActivateTab(i - 1),
+	})
+end
+
+-- Workspace activation keybindings (Ctrl+Shift+Alt+1-9)
+for i = 1, 9 do
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "CTRL",
+		action = wezterm.action_callback(function(window, pane)
+			local workspaces = wezterm.mux.get_workspace_names()
+			table.sort(workspaces)
+			if #workspaces >= i then
+				window:perform_action(
+					act.SwitchToWorkspace({
+						name = workspaces[i],
+					}),
+					pane
+				)
+			end
+		end),
 	})
 end
 
