@@ -16,8 +16,8 @@ config.term = "xterm-256color"
 -- FONT CONFIGURATION
 -- ============================================================================
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 9.2
-config.line_height = 0.8
+config.font_size = 9
+config.line_height = 1
 config.use_cap_height_to_scale_fallback_fonts = true
 
 -- ============================================================================
@@ -30,7 +30,7 @@ config.default_cursor_style = "BlinkingBlock"
 -- ============================================================================
 config.window_padding = {
 	left = 8,
-	right = 8,
+	right = 0,
 	top = 8,
 	bottom = 2,
 }
@@ -46,14 +46,14 @@ config.window_frame = {
 	active_titlebar_bg = "rgba(0, 0, 0, 80%)",
 	inactive_titlebar_bg = "rgba(0, 0, 0, 80%)",
 
-	border_left_width = "0.6cell",
-	border_right_width = "0.42cell",
-	border_bottom_height = "1cell",
+	border_left_width = "1.2cell",
+	border_right_width = "0.34cell",
+	border_bottom_height = "0.8cell",
 	border_top_height = "0.4cell",
-	border_left_color = "black",
-	border_right_color = "black",
-	border_bottom_color = "black",
-	border_top_color = "black",
+	border_left_color = "#101010",
+	border_right_color = "#101010",
+	border_bottom_color = "#101010",
+	border_top_color = "#101010",
 }
 
 -- ============================================================================
@@ -75,7 +75,7 @@ config.enable_kitty_keyboard = true
 -- ============================================================================
 config.colors = {
 	foreground = "silver",
-	background = "#000000",
+	background = "#101010",
 
 	cursor_bg = "#ffffff",
 	cursor_fg = "black",
@@ -297,7 +297,7 @@ end)
 wezterm.on("gui-startup", function()
 	mux.spawn_window({
 		width = 134,
-		height = 43,
+		height = 34,
 		position = {
 			x = -10,
 			y = -2,
@@ -332,9 +332,9 @@ tabline.setup({
 		theme_overrides = {
 			normal_mode = {
 				-- To remove the background color, set the 'bg' to your terminal's background color
-				a = { bg = "#000000", fg = "#ffffff" },
-				b = { bg = "#000000", fg = "#ffffff" },
-				c = { bg = "#000000", fg = "#ffffff" },
+				a = { bg = "#101010", fg = "#deeeed" },
+				b = { bg = "#101010", fg = "#deeeed" },
+				c = { bg = "#101010", fg = "#444444" },
 				-- You can do the same for other modes/sections as needed
 				-- inactive_mode = { ... }
 			},
@@ -363,7 +363,7 @@ tabline.setup({
 		},
 		tabline_x = { "" },
 		tabline_y = { "domain" },
-		tabline_z = { " " },
+		tabline_z = { "" },
 	},
 	extensions = {},
 })

@@ -48,10 +48,10 @@ gaps:
 
   # Gap between windows and the screen edge.
   outer_gap:
-    top: '36.8px'
-    right: '4px'
-    bottom: '4px'
-    left: '4px'
+    top: '22.34px'
+    right: '3.4px'
+    bottom: '3.4px'
+    left: '3.4px'
 
 window_effects:
   # Visual effects to apply to the focused window.
@@ -210,7 +210,7 @@ keybindings:
   # Disables window management and all other keybindings until alt+shift+p
   # is pressed again.
   - commands: ['wm-toggle-pause']
-    bindings: ['alt+shift+p']
+    bindings: ['alt+shift+g']
 
   # Change tiling direction. This determines where new tiling windows will
   # be inserted.

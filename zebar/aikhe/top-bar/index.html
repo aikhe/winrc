@@ -164,13 +164,6 @@
                 </div>
               )}
 
-              {output.weather && (
-                <div className="weather">
-                  {getWeatherIcon(output.weather)}
-                  {Math.round(output.weather.celsiusTemp)}°C
-                </div>
-              )}
-
               {showSystray && output.systray && output.systray.icons && (
                 <div className="systray">
                   {output.systray.icons.map((icon, i) => (

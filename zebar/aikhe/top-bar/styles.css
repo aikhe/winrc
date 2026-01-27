@@ -5,17 +5,17 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
 
 :root {
-  --text-size: 12px;
-  --icon-size: 14px;
+  --text-size: 11px;
+  --icon-size: 10px;
 
-  --text-color-light: rgba(0 0 0 / 80%);
-  --text-color-dark: rgba(255 255 255 / 80%);
+  --text-color-light: rgba(0 0 0 / 100%);
+  --text-color-dark: rgba(228 238 237 / 80%);
 
   --icon-color-light: white;
   --icon-color-dark: rgba(255 255 255 / 40%);
 
   --background-color-light: rgba(238 238 238 / 100%);
-  --background-color-dark: rgba(0 0 0 / 100%);
+  --background-color-dark: rgba(16 16 16 / 100%);
 }
 
 @media (prefers-color-scheme: light) {
@@ -67,7 +67,7 @@ p {
 html,
 body,
 #root {
-  height: 95%;
+  height: 80%;
 }
 
 #root {
@@ -78,8 +78,8 @@ body,
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  height: 100%;
-  padding: 1px 0.2vw 1px 0.2vw;
+  height: 80%;
+  padding: 0px 0.2vw 0px 0vw;
 }
 
 .left,
@@ -109,6 +109,7 @@ body,
 .cpu,
 .battery {
   margin-right: 6px;
+  /* font-size: var(--text-size); */
 }
 
 .workspaces {
@@ -118,16 +119,17 @@ body,
 
 .workspace {
   background: rgb(255 255 255 / 4%);
-  margin-right: 2px;
-  padding: 4px 8px;
+  /* margin-right: 1px; */
+  padding: 2.4px 4.6px;
   color: rgb(255 255 255 / 90%);
   border: none;
+  height: 100%;
   /* border-radius: 2px; */
   cursor: pointer;
 
-  &.displayed {
-    background: rgb(255 255 255 / 15%);
-  }
+  /* &.displayed { */
+  /*   background: rgb(255 255 255 / 15%); */
+  /* } */
 
   &.focused,
   &:hover {
@@ -144,7 +146,7 @@ body,
   padding: 4px 8px;
   border: 0;
   cursor: pointer;
-  margin-right: 2.8px;
+  margin-right: 1.34px;
 }
 
 .binding-mode {
