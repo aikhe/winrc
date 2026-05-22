@@ -1,4 +1,4 @@
-![winrc](./asset/demo-winrc.png)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c250c044-d376-4361-a942-dcdc4c686118" />
 
 # My Windows Config
 
