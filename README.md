@@ -34,6 +34,9 @@ To setup Zen
 
 ## Window Manager Setup
 
+- [Komorebi](https://github.com/LGUG2Z/komorebi)
+- Copy [Komorebi conf files](./komorebi/) to `~`
+
 - [GlazeWM](https://github.com/glzr-io/glazewm)
 
 To configure GlazeWM:
@@ -41,6 +44,9 @@ To configure GlazeWM:
 - Copy [GlazeWM config](./glazewm/) in `%USERPROFILE%/.glzr` directory
 
 ## TopBar Setup
+
+- [Yasb](https://github.com/amnweb/yasb)
+- Copy [yasb](./yasb/) to `~/.config/`
 
 - [Zebar](https://github.com/glzr-io/zebar)
 
