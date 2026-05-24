@@ -35,10 +35,10 @@ config.window_padding = {
 	bottom = 2,
 }
 
-config.window_decorations = "NONE"
+config.window_decorations = "RESIZE"
 config.window_background_opacity = 1.0
 config.default_prog = { "powershell.exe", "-NoLogo" }
-config.default_cwd = "C:/Users/aikhe/Desktop/ike/local"
+-- config.default_cwd = "C:/Users/aikhe/Desktop/ike/local"
 
 config.window_frame = {
 	font = wezterm.font({ family = "JetBrainsMono Nerd Font", weight = "Regular" }),
@@ -63,79 +63,87 @@ config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.show_new_tab_button_in_tab_bar = false
--- config.show_close_tab_button_in_tabs = false
+config.show_close_tab_button_in_tabs = false
 
 -- ============================================================================
 -- KEYBOARD
 -- ============================================================================
-config.enable_kitty_keyboard = true
+-- config.enable_kitty_keyboard = true
 
 -- ============================================================================
 -- COLOR SCHEME
 -- ============================================================================
 config.colors = {
-	foreground = "silver",
+	foreground = "#B7B7B7",
 	background = "#101010",
 
-	cursor_bg = "#ffffff",
-	cursor_fg = "black",
-	cursor_border = "#ffffff",
+	cursor_bg = "#ededed",
+	cursor_fg = "#101010",
+	cursor_border = "#ededed",
 
-	selection_fg = "black",
-	selection_bg = "#aaaaaa",
+	selection_fg = "#b7b7b7",
+	selection_bg = "#3d3d3d",
 
 	scrollbar_thumb = "#222222",
 	split = "#191919",
 
 	ansi = {
-		"black",
-		"#ffaa88",
-		"#789978",
-		"#555555",
-		"navy",
-		"purple",
+		"#101010",
+		"#FFBA9D",
+		"#8ABE8A",
+		"#ffffff",
+		"#485571",
+		"#6D89A7",
 		"#708090",
-		"silver",
+		"#939393",
 	},
 
 	brights = {
-		"grey",
-		"#deeeed",
-		"#ffaa88",
-		"#7788aa",
-		"blue",
-		"fuchsia",
-		"#708090",
-		"white",
+		"#b7b7b7",
+		"#C9D9D8",
+		"#FFBA9D",
+		"#6D89A7",
+		"#485571",
+		"#FF8080",
+		"#8ABE8A",
+		"#ffffff",
 	},
 
-	indexed = { [136] = "#af8700" },
-	compose_cursor = "orange",
-
-	copy_mode_active_highlight_bg = { Color = "#000000" },
-	copy_mode_active_highlight_fg = { AnsiColor = "Black" },
-	copy_mode_inactive_highlight_bg = { Color = "#789978" },
-	copy_mode_inactive_highlight_fg = { AnsiColor = "White" },
-
-	quick_select_label_bg = { Color = "peru" },
-	quick_select_label_fg = { Color = "#ffffff" },
-	quick_select_match_bg = { AnsiColor = "Navy" },
-	quick_select_match_fg = { Color = "#ffffff" },
-
 	tab_bar = {
-		background = "rgba(0, 0, 0, 0%)",
+		background = "#101010",
+		inactive_tab_edge = "#101010",
+
 		active_tab = {
-			bg_color = "rgba(0, 0, 0, 0%)",
-			fg_color = "#aaaaaa",
+			fg_color = "#939393",
+			bg_color = "#101010",
 			intensity = "Normal",
 			underline = "None",
 			italic = false,
 			strikethrough = false,
 		},
 		inactive_tab = {
-			bg_color = "rgba(0, 0, 0, 0%)",
-			fg_color = "#555555",
+			fg_color = "#525252",
+			bg_color = "#101010",
 			intensity = "Normal",
+			underline = "None",
+			italic = false,
+			strikethrough = false,
+		},
+
+		inactive_tab_hover = {
+			fg_color = "#939393",
+			bg_color = "#101010",
+		},
+
+		new_tab = {
+			fg_color = "#3d3d3d",
+			bg_color = "#101010",
+		},
+
+		new_tab_hover = {
+			fg_color = "#b7b7b7",
+			bg_color = "#101010",
+			intensity = "Bold",
 			underline = "None",
 			italic = false,
 			strikethrough = false,
@@ -298,10 +306,10 @@ wezterm.on("gui-startup", function()
 	mux.spawn_window({
 		width = 134,
 		height = 34,
-		position = {
-			x = -10,
-			y = -2,
-		},
+		-- position = {
+		-- 	x = -10,
+		-- 	y = -2,
+		-- },
 	})
 end)
 
