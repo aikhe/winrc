@@ -154,6 +154,49 @@ wezterm.on("gui-startup", function()
 	})
 end)
 
+-- Kills every pane in the active workspace, then the workspace is gone.
+local function kill_workspace(window, pane)
+	local target = window:active_workspace()
+	wezterm.log_info("kill-workspace: " .. target)
+	local fallback = nil
+	for _, name in ipairs(wezterm.mux.get_workspace_names()) do
+		if name ~= target then
+			fallback = name
+			break
+		end
+	end
+	if not fallback then
+		window:toast_notification("wezterm", "Cannot kill the only workspace (" .. target .. ")", nil, 4000)
+		return
+	end
+	-- Move the GUI away first so visible windows are not ripped out.
+	window:perform_action(act.SwitchToWorkspace({ name = fallback }), pane)
+	-- Collect pane ids first; the mux list shifts as panes die.
+	-- Killed via the CLI because perform_action cannot target panes
+	-- in background workspace windows.
+	local ids = {}
+	for _, mux_win in ipairs(wezterm.mux.all_windows()) do
+		if mux_win:get_workspace() == target then
+			for _, tab in ipairs(mux_win:tabs()) do
+				for _, p in ipairs(tab:panes()) do
+					table.insert(ids, p:pane_id())
+				end
+			end
+		end
+	end
+	local exe = wezterm.executable_dir .. "/wezterm.exe"
+	local killed = 0
+	for _, id in ipairs(ids) do
+		local ok, _, stderr = wezterm.run_child_process({ exe, "cli", "kill-pane", "--pane-id=" .. id })
+		if ok then
+			killed = killed + 1
+		else
+			wezterm.log_info("kill-workspace: pane " .. id .. " failed: " .. tostring(stderr))
+		end
+	end
+	window:toast_notification("wezterm", "Killed workspace " .. target .. " (" .. killed .. " panes)", nil, 4000)
+end
+
 -- Test keys: sessionizer plus personal bindings (mirrors ~/.wezterm.lua).
 config.keys = {
 	-- Sessionizer
@@ -225,6 +268,10 @@ config.keys = {
 			)
 		end),
 	},
+	-- Kill workspace with CTRL+ALT+X. Lowercase key: uppercase key names
+	-- never match, and Shift chords never reach wezterm on this machine
+	-- (Windows eats CTRL+SHIFT for layout switching, CTRL+ALT+SHIFT as AltGr).
+	{ key = "x", mods = "CTRL|ALT", action = wezterm.action_callback(kill_workspace) },
 	{
 		key = "r",
 		mods = "CTRL|ALT|SHIFT",
