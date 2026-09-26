@@ -1,33 +1,29 @@
--- Pull in the wezterm API
+-- Throwaway test config. Does not touch C:/Users/aikhe/.wezterm.lua.
+-- Run it with:
+-- & "C:\Program Files\WezTerm\wezterm.exe" --config-file "C:\Users\aikhe\Desktop\ike\local\wezterm-sessionizer\test-config.lua" start
 local wezterm = require("wezterm")
 local act = wezterm.action
-local mux = wezterm.mux
 
--- Initialize configuration
+-- Load local plugin by path so no install step is needed.
+package.path = package.path
+	.. ";C:/Users/aikhe/Desktop/ike/local/wezterm-sessionizer/plugin/?.lua"
+
+local sessionizer = require("init")
+
 local config = wezterm.config_builder()
+config.default_prog = { "powershell.exe", "-NoLogo" }
 
--- ============================================================================
--- PERFORMANCE & RENDERING
--- ============================================================================
+-- Look and feel mirrors ~/.wezterm.lua (tabline excluded for fast launches).
 config.prefer_egl = true
 config.term = "xterm-256color"
 
--- ============================================================================
--- FONT CONFIGURATION
--- ============================================================================
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 9
 config.line_height = 1
 config.use_cap_height_to_scale_fallback_fonts = true
 
--- ============================================================================
--- CURSOR
--- ============================================================================
 config.default_cursor_style = "BlinkingBlock"
 
--- ============================================================================
--- WINDOW SETTINGS
--- ============================================================================
 config.window_padding = {
 	left = 8,
 	right = 0,
@@ -37,8 +33,6 @@ config.window_padding = {
 
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 1.0
-config.default_prog = { "powershell.exe", "-NoLogo" }
--- config.default_cwd = "C:/Users/aikhe/Desktop/ike/local"
 
 config.window_frame = {
 	font = wezterm.font({ family = "JetBrainsMono Nerd Font", weight = "Regular" }),
@@ -56,23 +50,13 @@ config.window_frame = {
 	border_top_color = "#101010",
 }
 
--- ============================================================================
--- TAB BAR
--- ============================================================================
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
+config.status_update_interval = 1000
 
--- ============================================================================
--- KEYBOARD
--- ============================================================================
--- config.enable_kitty_keyboard = true
-
--- ============================================================================
--- COLOR SCHEME
--- ============================================================================
 config.colors = {
 	foreground = "#B7B7B7",
 	background = "#101010",
@@ -156,18 +140,34 @@ config.inactive_pane_hsb = {
 	brightness = 1.0,
 }
 
--- ============================================================================
--- KEY BINDINGS
--- ============================================================================
+sessionizer.apply_to_config(config, {
+	-- Tabline owns status here, so the plugin label stays off.
+	status_label = false,
+})
+
+-- Show resolved state dir on startup. Proves platform.lua works.
+wezterm.on("gui-startup", function()
+	wezterm.log_info("sessionizer state dir: " .. sessionizer.get_state_dir())
+	wezterm.mux.spawn_window({
+		width = 134,
+		height = 34,
+	})
+end)
+
+-- Test keys: sessionizer plus personal bindings (mirrors ~/.wezterm.lua).
 config.keys = {
-	-- Color scheme toggle
+	-- Sessionizer
+	{ key = "s", mods = "CTRL|SHIFT", action = act.EmitEvent("sessionizer.save") },
+	{ key = "r", mods = "CTRL|SHIFT", action = act.EmitEvent("sessionizer.restore") },
+	{ key = "f", mods = "CTRL|SHIFT", action = act.EmitEvent("sessionizer.jump") },
+	{ key = "d", mods = "CTRL|SHIFT", action = act.EmitEvent("sessionizer.delete") },
+
+	-- Personal
 	{
 		key = "E",
 		mods = "CTRL|SHIFT|ALT",
 		action = wezterm.action.EmitEvent("toggle-colorscheme"),
 	},
-
-	-- Opacity toggle
 	{
 		key = "O",
 		mods = "CTRL|ALT",
@@ -181,11 +181,7 @@ config.keys = {
 			window:set_config_overrides(overrides)
 		end),
 	},
-
-	-- Tab navigation
 	{ key = "Tab", mods = "CTRL|ALT", action = act.ActivateTabRelative(1) },
-
-	-- Pane splitting
 	{
 		key = "h",
 		mods = "CTRL|ALT|SHIFT",
@@ -196,29 +192,19 @@ config.keys = {
 		mods = "CTRL|ALT|SHIFT",
 		action = act.SplitPane({ direction = "Down", size = { Percent = 50 } }),
 	},
-
-	-- Pane navigation
 	{ key = "h", mods = "CTRL|ALT", action = act.ActivatePaneDirection("Left") },
 	{ key = "j", mods = "CTRL|ALT", action = act.ActivatePaneDirection("Down") },
 	{ key = "k", mods = "CTRL|ALT", action = act.ActivatePaneDirection("Up") },
 	{ key = "l", mods = "CTRL|ALT", action = act.ActivatePaneDirection("Right") },
-
-	-- Pane resizing
 	{ key = "h", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Left", 5 }) },
 	{ key = "j", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Down", 5 }) },
 	{ key = "i", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Up", 5 }) },
 	{ key = "l", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Right", 5 }) },
-
-	-- Pane management
 	{ key = "o", mods = "CTRL", action = act.PaneSelect },
 	{ key = "9", mods = "CTRL", action = act.PaneSelect },
 	{ key = "q", mods = "CTRL|SHIFT", action = act.CloseCurrentPane({ confirm = true }) },
 	{ key = "w", mods = "CTRL|SHIFT", action = act.CloseCurrentPane({ confirm = false }) },
-
-	-- Debug
 	{ key = "0", mods = "CTRL", action = act.ShowDebugOverlay },
-
-	-- Workspace management
 	{ key = "n", mods = "CTRL|ALT", action = act.SwitchWorkspaceRelative(1) },
 	{ key = "p", mods = "CTRL|ALT", action = act.SwitchWorkspaceRelative(-1) },
 	{
@@ -265,7 +251,7 @@ config.keys = {
 	},
 }
 
--- Tab activation keybindings (Ctrl+Alt+1-9)
+-- Tab activation (Ctrl+Alt+1-9), mirrors ~/.wezterm.lua.
 for i = 1, 9 do
 	table.insert(config.keys, {
 		key = tostring(i),
@@ -274,14 +260,20 @@ for i = 1, 9 do
 	})
 end
 
--- Workspace activation keybindings (Ctrl+1-9)
+-- Workspace activation (Ctrl+1-9), mirrors ~/.wezterm.lua.
 for i = 1, 9 do
 	table.insert(config.keys, {
 		key = tostring(i),
 		mods = "CTRL",
 		action = wezterm.action_callback(function(window, pane)
 			local workspaces = wezterm.mux.get_workspace_names()
-			table.sort(workspaces)
+			table.sort(workspaces, function(a, b)
+				local al, bl = a:lower(), b:lower()
+				if al == bl then
+					return a < b
+				end
+				return al < bl
+			end)
 			if #workspaces >= i then
 				window:perform_action(
 					act.SwitchToWorkspace({
@@ -294,9 +286,6 @@ for i = 1, 9 do
 	})
 end
 
--- ============================================================================
--- EVENTS
--- ============================================================================
 wezterm.on("toggle-colorscheme", function(window)
 	local overrides = window:get_config_overrides() or {}
 	if overrides.color_scheme == "Zenburn" then
@@ -307,18 +296,7 @@ wezterm.on("toggle-colorscheme", function(window)
 	window:set_config_overrides(overrides)
 end)
 
-wezterm.on("gui-startup", function()
-	mux.spawn_window({
-		width = 134,
-		height = 34,
-		-- position = {
-		-- 	x = -10,
-		-- 	y = -2,
-		-- },
-	})
-end)
-
--- Format tab title to show custom titles
+-- Format tab title to show custom titles, mirrors ~/.wezterm.lua.
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local title = tab.tab_title
 	if not title or #title == 0 then
@@ -326,15 +304,51 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	end
 
 	return {
-		{ Text = "" }, -- left padding
+		{ Text = "" },
 		{ Text = title },
-		{ Text = "  " }, -- right padding
+		{ Text = "  " },
 	}
 end)
 
--- ============================================================================
--- PLUGINS
--- ============================================================================
+-- Lists all mux workspaces with active/inactive colors matching the tabs.
+-- Mirrors CTRL+1-9 sort order. Returns wezterm.format so each entry keeps
+-- its own fg inside tabline_y (tabline wraps function output as one Text).
+local function workspaces(window, _)
+	local names = wezterm.mux.get_workspace_names()
+	table.sort(names, function(a, b)
+		local al, bl = a:lower(), b:lower()
+		if al == bl then
+			return a < b
+		end
+		return al < bl
+	end)
+	local active = window:active_workspace()
+	local active_fg = "#939393"
+	local inactive_fg = "#525252"
+	local bg = "#101010"
+	local elems = {}
+	for i, name in ipairs(names) do
+		if i > 1 then
+			table.insert(elems, { Foreground = { Color = "#444444" } })
+			table.insert(elems, { Background = { Color = bg } })
+			table.insert(elems, { Text = "  " })
+		end
+		if name == active then
+			table.insert(elems, { Foreground = { Color = active_fg } })
+			table.insert(elems, { Background = { Color = bg } })
+			table.insert(elems, { Attribute = { Intensity = "Normal" } })
+			table.insert(elems, { Text = i .. ":" .. name })
+		else
+			table.insert(elems, { Foreground = { Color = inactive_fg } })
+			table.insert(elems, { Background = { Color = bg } })
+			table.insert(elems, { Attribute = { Intensity = "Normal" } })
+			table.insert(elems, { Text = i .. ":" .. name })
+		end
+	end
+	return wezterm.format(elems)
+end
+
+-- Tabline included to bisect the main-config issue. Verbatim from ~/.wezterm.lua.
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 
 tabline.setup({
@@ -344,12 +358,9 @@ tabline.setup({
 		tabs_enabled = true,
 		theme_overrides = {
 			normal_mode = {
-				-- To remove the background color, set the 'bg' to your terminal's background color
 				a = { bg = "#101010", fg = "#deeeed" },
 				b = { bg = "#101010", fg = "#deeeed" },
 				c = { bg = "#101010", fg = "#444444" },
-				-- You can do the same for other modes/sections as needed
-				-- inactive_mode = { ... }
 			},
 		},
 		component_separators = "",
@@ -375,8 +386,8 @@ tabline.setup({
 			{ "process", padding = { left = 1, right = 2 } },
 		},
 		tabline_x = { "" },
-		tabline_y = { "domain" },
-		tabline_z = { "" },
+		tabline_y = { workspaces },
+		tabline_z = { " " },
 	},
 	extensions = {},
 })
