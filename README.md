@@ -31,6 +31,7 @@ To setup Zen
 ## Powershell Aliases + Yazi
 
 - Copy [WindowsPowershell](./WindowsPowerShell//) to `Documents` directory
+- For PowerShell 7, copy [PowerShell](./PowerShell/) to `Documents` directory (loads openclaw completion)
 
 ## Window Manager Setup
 
